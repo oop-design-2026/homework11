@@ -1,0 +1,46 @@
+=== Problem 1: Class Template ===
+[Array<int, 5>]
+arr[0] = 1
+arr[1] = 2
+arr[2] = 3
+arr[3] = 4
+arr[4] = 5
+size = 5
+[Array<double, 3>]
+darr[0] = 1.1
+darr[1] = 2.2
+darr[2] = 3.3
+[Pair<string, int>]
+first = Alice, second = 95
+[Pair<double>]
+first = 1.5, second = 2.7
+=== Problem 2: Template Specialization ===
+[TypeInfo]
+int    : int (integral=1)
+double : double (integral=0)
+bool   : bool (integral=1)
+char*  : const char* (integral=0)
+float  : unknown (integral=0)
+[printIntegral]
+[integral] 42
+[integral] 1
+[integral] -5
+=== Problem 3: STL Containers ===
+[std::vector]
+size = 3
+elements: Alice Bob Charlie
+after pop_back, size = 2
+[std::list]
+initial size = 6
+after sort: 1 1 2 3 3 5
+after unique: 1 2 3 5
+[std::set]
+size = 3
+find(85) = found
+count(92) = 1
+after erase(85), size = 2
+[std::map]
+size = 2
+Alice = 85
+find(Bob) = found
+after accessing Charlie, size = 3

@@ -1,0 +1,15 @@
+=== Problem 5: SimpleVector ===
+[SimpleVector<int>]
+empty = 1
+size = 0
+after pop_back, size = 0
+[Iterator]
+
+[Range-based for]
+
+[SimpleVector<string>]
+size = 0
+
+[Copy]
+sv  size = 0
+sv2 size = 0

@@ -1,0 +1,14 @@
+=== Problem 6: Integrated — Generic Calculator ===
+[Part 1] Function Template + Template Argument Deduction
+add(3, 7) = 10
+add(1.5, 2.3) = 3.8
+add(3, 7) = 10
+[Part 2] Multiple Template Parameters
+add(5, 2.5) = 7.5
+add(2.5, 5) = 7.5
+[Part 3] Non-Type Template Parameter
+scaledAdd<2>(3, 4) = 14
+scaledAdd<3>(1.5, 2.3) = 11.4
+[Part 4] NTTP + Multiple Type Parameters
+scaledAdd<2>(3, 1.7) = 9.4
+scaledAdd<3>(2, 0.5) = 7.5

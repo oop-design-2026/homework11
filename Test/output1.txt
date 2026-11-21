@@ -1,0 +1,26 @@
+=== Problem 1: Basic Function Template ===
+[add]
+add(3, 7) = 10  [T deduced: int]
+add(1.5, 4.3) = 5.8  [T deduced: double]
+add<int>(3, 7) = 10  [explicit: T = int]
+add<double>(3, 7) = 10  [explicit: T = double]
+[maxValue]
+maxValue(3, 7) = 7  [T deduced: int]
+maxValue(1.5, 4.3) = 4.3  [T deduced: double]
+=== Problem 2: Template Argument Deduction ===
+[1] Implicit Deduction — same type
+add(3, 7) = 10  [T=int]
+add(1.5, 2.3) = 3.8  [T=double]
+[2] Explicit Template Argument
+add(3, 7) = 10  [T=double]
+[3] Mixed Types — Explicit 로 해결
+add(3, 1.5) = 4.5  [T=double]
+=== Problem 3: Multiple Template Parameters ===
+[Part 1] Single Type Parameter (limitation)
+[NOTE] add<T>(5, 2.5) → Compile Error: T cannot be both int and double
+[Part 2] Two Type Parameters (T, U)
+add(5, 2.5) = 7.5  [T=int, U=double]
+add(2.5, 5) = 7.5  [T=double, U=int]
+[Part 3] auto Return Type Deduction
+subtract(5, 2.5) = 2.5  [auto → double]
+subtract(2.5, 5) = -2.5  [auto → double]

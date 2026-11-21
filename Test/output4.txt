@@ -1,0 +1,7 @@
+=== Problem 4: STL Iterator ===
+[Iterator (explicit type)]
+vector: [Iterator (auto)]
+list: [Range-based for]
+set (sorted): [sort + iterator]
+sorted vector: 1 2 3 4 5 
+[find]
