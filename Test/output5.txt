@@ -1,15 +1,20 @@
 === Problem 5: SimpleVector ===
 [SimpleVector<int>]
 empty = 1
-size = 0
-after pop_back, size = 0
+size = 5
+sv[0] = 3
+sv[1] = 1
+sv[2] = 4
+sv[3] = 1
+sv[4] = 5
+after pop_back, size = 4
 [Iterator]
-
+3 1 4 1 
 [Range-based for]
-
+3 1 4 1 
 [SimpleVector<string>]
-size = 0
-
+size = 3
+hello world cpp 
 [Copy]
-sv  size = 0
-sv2 size = 0
+sv  size = 4
+sv2 size = 5

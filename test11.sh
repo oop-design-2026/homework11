@@ -9,13 +9,17 @@
 g++ main.cpp problem1.cpp problem2.cpp problem3.cpp \
     -o hw11_main -std=c++17 -g
 if [ $? -ne 0 ]; then
-    echo "Problem 1-3: Compile Error"
+    echo "Problem 1: FAIL"
+    echo "Problem 2: FAIL"
+    echo "Problem 3: FAIL"
 else
     run_ok=1
     for j in 1 2 3; do
         ./hw11_main Test/case${j}.txt > Test/output${j}.txt 2>/dev/null
         if [ $? -ne 0 ]; then
-            echo "Problem 1-3: Runtime Error (case${j})"
+            echo "Problem 1: FAIL"
+            echo "Problem 2: FAIL"
+            echo "Problem 3: FAIL"
             run_ok=0
             break
         fi
@@ -44,12 +48,6 @@ else
                 echo "Problem $i: PASS"
             else
                 echo "Problem $i: FAIL"
-                for j in 1 2 3; do
-                    echo "  [case${j}] expected:"
-                    extract Test/expected${j}.txt $i | sed 's/^/    /'
-                    echo "  [case${j}] got:"
-                    extract Test/output${j}.txt $i | sed 's/^/    /'
-                done
             fi
         done
     fi
@@ -59,14 +57,14 @@ fi
 # Problem 4~5 : 단독 컴파일 후 고정 출력 비교
 # ─────────────────────────────────────────────────────────────
 for i in 4 5; do
-    g++ problem${i}.cpp -o hw11_p${i} -std=c++17 -g 2>/dev/null
+    g++ problem${i}.cpp -o hw11_p${i} -std=c++17 -g
     if [ $? -ne 0 ]; then
-        echo "Problem $i: FAIL (Compile Error)"
+        echo "Problem $i: FAIL"
         continue
     fi
     ./hw11_p${i} > Test/output${i}.txt 2>/dev/null
     if [ $? -ne 0 ]; then
-        echo "Problem $i: FAIL (Runtime Error)"
+        echo "Problem $i: FAIL"
         rm -f hw11_p${i}
         continue
     fi
@@ -76,9 +74,5 @@ for i in 4 5; do
         echo "Problem $i: PASS"
     else
         echo "Problem $i: FAIL"
-        echo "  expected:"
-        tr -d '\r' < Test/expected${i}.txt | sed 's/^/    /'
-        echo "  got:"
-        tr -d '\r' < Test/output${i}.txt | sed 's/^/    /'
     fi
 done

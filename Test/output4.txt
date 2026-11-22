@@ -1,7 +1,12 @@
 === Problem 4: STL Iterator ===
 [Iterator (explicit type)]
-vector: [Iterator (auto)]
-list: [Range-based for]
-set (sorted): [sort + iterator]
+vector: 5 3 1 4 2 
+[Iterator (auto)]
+list: Charlie Alice Bob 
+[Range-based for]
+set (sorted): 1 2 3 4 5 
+[sort + iterator]
 sorted vector: 1 2 3 4 5 
 [find]
+found: 3
+not found

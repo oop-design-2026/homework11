@@ -15,13 +15,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Compile and run test cases
+      - name: Compile and run test cases (Problems 1-3)
         run: |
-          g++ main.cpp problem1.cpp problem2.cpp problem3.cpp \
-            -o hw11_main -std=c++17 -fsanitize=address -g
-          for j in 1 2 3; do
-            ./hw11_main Test/case${j}.txt > Test/output${j}.txt
-          done
+          if g++ main.cpp problem1.cpp problem2.cpp problem3.cpp \
+              -o hw11_main -std=c++17 -fsanitize=address -g; then
+            for j in 1 2 3; do
+              ./hw11_main Test/case${j}.txt > Test/output${j}.txt || true
+            done
+          else
+            for j in 1 2 3; do
+              echo "(compile error)" > Test/output${j}.txt
+            done
+          fi
+
+      - name: Compile and run Problem 4
+        run: |
+          g++ problem4.cpp -o hw11_p4 -std=c++17 -fsanitize=address -g \
+            && ./hw11_p4 > Test/output4.txt \
+            || echo "(compile/run error)" > Test/output4.txt
+
+      - name: Compile and run Problem 5
+        run: |
+          g++ problem5.cpp -o hw11_p5 -std=c++17 -fsanitize=address -g \
+            && ./hw11_p5 > Test/output5.txt \
+            || echo "(compile/run error)" > Test/output5.txt
 
       - name: Problem 1
         id: prob1
@@ -31,7 +48,7 @@ jobs:
           setup-command: ''
           command: bash Test/check.sh 1
           timeout: 10
-          max-score: 34
+          max-score: 20
 
       - name: Problem 2
         id: prob2
@@ -41,7 +58,7 @@ jobs:
           setup-command: ''
           command: bash Test/check.sh 2
           timeout: 10
-          max-score: 33
+          max-score: 20
 
       - name: Problem 3
         id: prob3
@@ -51,7 +68,27 @@ jobs:
           setup-command: ''
           command: bash Test/check.sh 3
           timeout: 10
-          max-score: 33
+          max-score: 20
+
+      - name: Problem 4
+        id: prob4
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Problem 4
+          setup-command: ''
+          command: bash Test/check.sh 4
+          timeout: 10
+          max-score: 20
+
+      - name: Problem 5
+        id: prob5
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Problem 5
+          setup-command: ''
+          command: bash Test/check.sh 5
+          timeout: 10
+          max-score: 20
 
       - name: Autograding Reporter
         uses: education/autograding-grading-reporter@v1
@@ -59,5 +96,7 @@ jobs:
           PROB1_RESULTS: "${{steps.prob1.outputs.result}}"
           PROB2_RESULTS: "${{steps.prob2.outputs.result}}"
           PROB3_RESULTS: "${{steps.prob3.outputs.result}}"
+          PROB4_RESULTS: "${{steps.prob4.outputs.result}}"
+          PROB5_RESULTS: "${{steps.prob5.outputs.result}}"
         with:
-          runners: prob1,prob2,prob3
+          runners: prob1,prob2,prob3,prob4,prob5
