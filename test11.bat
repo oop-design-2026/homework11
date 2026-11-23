@@ -12,7 +12,9 @@ g++ main.cpp problem1.cpp problem2.cpp problem3.cpp ^
     -o hw11_main.exe -std=c++17
 
 if errorlevel 1 (
-    echo Problem 1-3: Compile Error
+    echo Problem 1: FAIL
+    echo Problem 2: FAIL
+    echo Problem 3: FAIL
     goto :problem45
 )
 
@@ -21,7 +23,9 @@ for %%j in (1 2 3) do (
     .\hw11_main.exe Test\case%%j.txt > Test\output%%j.txt 2>nul
 
     if errorlevel 1 (
-        echo Problem 1-3: Runtime Error ^(case%%j^)
+        echo Problem 1: FAIL
+        echo Problem 2: FAIL
+        echo Problem 3: FAIL
         set RUN_OK=0
         goto :after_run123
     )
@@ -82,7 +86,7 @@ exit /b %errorlevel%
 
 
 rem =============================================
-rem Problem 4~6 : 단독 출력 전체 비교
+rem Problem 4~5 : 단독 출력 전체 비교
 rem =============================================
 :check456
 
